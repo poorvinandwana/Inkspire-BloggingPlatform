@@ -1,0 +1,91 @@
+{% extends './base/base.html' %}
+
+
+{% block content %}
+<div class = "container">    
+<!-- Page content-->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{ single_post.title }}</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on {{ single_post.created_at }} by {{ single_post.author }}</div>
+                    <!-- Post category-->
+                    <a class="badge bg-primary text-decoration-none text-light" href="{% url 'posts_by_category' single_post.category.id %}">{{ single_post.category }}</a>
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{ single_post.blog_image.url }}" alt="..." /></figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <p class="fs-5 mb-4">{{ single_post.short_description }}</p>
+                    <p class="fs-5 mb-4">{{ single_post.blog_body|safe  }}</p>
+
+                    <!-- Comments -->
+                    </section>
+            </article>
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h4>Comments({{ comment_count }})</h4>
+                    {% if comments %}
+                     {% for comment in comments %}
+                        <div class="card mt-3 mb-3">
+                            <div class="card-body">
+                                <p class="card-text mb-3">{{ comment }}</p>
+                                <span class="text-muted mb-5">
+                                    <small>{{ comment.user }} | </small>
+                                    <small>{{ comment.created_at | timesince }} ago</small>
+                                </span>
+                            </div>
+                        </div>
+                     {% endfor %}
+                    {% else %}
+                    No Comments Yet
+
+                    {% endif %}
+
+                    <div class="form-group">
+                        {% if user.is_authenticated %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mt-3">
+                                <textarea name="comment" class="form-control" placeholder="Write your comment"></textarea>
+                                <input type="submit" class="btn btn-secondary mt-2">
+                            </div>
+                        </form>
+                        {% else %}
+                        <br>
+                        <p> Please <span><a href="{% url 'login' %}?next={{ request.path }}">log in</a></span> to write a comment!</p>
+                        {% endif %}
+                    </div>
+                
+            <!-- Side widget-->
+             <br>
+             <br>
+            <div class="card mb-4 p-3">
+                <h4 class="font-italic">Follow Us</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/poorvinandwana">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/poorvi-nandwana-5111b72b5/">LinkedIn</a></li>
+                </ol>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

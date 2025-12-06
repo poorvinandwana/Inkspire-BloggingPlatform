@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Category Not Found — 404</title>
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --panel:#0b1220;
+      --accent:#7dd3fc; /* bright cyan */
+      --muted:#94a3b8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,0.06), transparent),
+                  radial-gradient(900px 500px at 95% 90%, rgba(99,102,241,0.04), transparent),
+                  var(--bg);
+      color:#e6eef8;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .card{
+      width:100%;
+      max-width:920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:18px;
+      padding:40px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    h1{
+      font-size:36px;
+      margin:0 0 12px 0;
+      letter-spacing:-0.02em;
+    }
+    p.lead{color:var(--muted);margin:0 0 20px 0}
+
+    .actions{display:flex;gap:12px;align-items:center}
+    .btn{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.08);
+      padding:10px 16px;border-radius:10px;color:inherit;text-decoration:none;cursor:pointer;font-weight:600;
+      transition:transform .14s ease, box-shadow .14s ease, background .14s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      background:linear-gradient(90deg,var(--accent), #6366f1);
+      color:#042029;border:0;box-shadow:0 6px 20px rgba(99,102,241,0.18);
+    }
+
+    /* Illustration area */
+    .scene{
+      width:100%;
+      height:320px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px dashed rgba(255,255,255,0.03);
+      position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:18px;
+    }
+
+    /* The detective character (simple shapes) */
+    .detective{
+      width:220px;height:220px;position:relative;display:grid;place-items:center;
+    }
+    .body{width:120px;height:120px;background:linear-gradient(180deg,#2b394f,#16202b);border-radius:18px;position:relative;box-shadow:inset 0 -6px 18px rgba(0,0,0,0.5)}
+    .hat{position:absolute;top:6px;left:calc(50% - 48px);width:96px;height:36px;background:#111827;border-radius:10px 10px 6px 6px;transform-origin:center;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+    .eye{position:absolute;top:54px;width:12px;height:12px;background:#fff;border-radius:50%;left:calc(50% - 24px)}
+    .eye.r{left:calc(50% + 12px)}
+
+    /* Magnifying glass */
+    .magnifier{
+      width:92px;height:92px;border-radius:50%;border:10px solid rgba(125,211,252,0.18);position:absolute;right:-18px;bottom:-18px;display:grid;place-items:center;backdrop-filter:blur(6px);
+      transform:rotate(18deg) translateY(0);animation:float 3.6s ease-in-out infinite;
+    }
+    .magnifier::after{content:'';position:absolute;right:-30px;bottom:-36px;width:38px;height:12px;border-radius:6px;background:linear-gradient(180deg,#0b1220,#111827);transform:rotate(-24deg);}
+
+    @keyframes float{0%{transform:translateY(0) rotate(18deg)}50%{transform:translateY(-12px) rotate(14deg)}100%{transform:translateY(0) rotate(18deg)}}
+
+    /* Sparkles */
+    .sparkle{position:absolute;width:6px;height:6px;background:var(--accent);border-radius:2px;filter:blur(.2px);opacity:.9}
+    .spark-1{top:18%;left:12%;animation:twinkle 3.8s infinite}
+    .spark-2{top:6%;right:18%;animation:twinkle 4.6s .4s infinite}
+    .spark-3{bottom:14%;left:22%;animation:twinkle 3.2s .2s infinite}
+
+    @keyframes twinkle{0%{transform:scale(0.6);opacity:.3}50%{transform:scale(1.3);opacity:1}100%{transform:scale(0.6);opacity:.3}}
+
+    /* The headline text that gets "scanned" away by magnifier */
+    .headline{
+      font-size:22px;margin:0;text-align:center;max-width:100%;position:relative;color:#dff7ff;font-weight:700
+    }
+    .headline .frag{display:inline-block;transform-origin:center;transition:transform .28s cubic-bezier(.2,.9,.3,1),opacity .28s}
+
+    /* on hover: crumble effect */
+    .scene:hover .frag{animation:crumble .9s forwards}
+    @keyframes crumble{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-40px) rotate(-18deg) scale(.6);opacity:0}}
+
+    /* small text */
+    .muted{color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;}
+      .scene{height:260px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="title">
+    <div>
+      <h1 id="title">Category does not exist</h1>
+      <p class="lead">We couldn't find the category you're looking for — looks like it wandered off the map. Try searching or head back home.</p>
+
+      <div class="actions">
+        <button class="btn primary" onclick="goHome()" aria-label="Go to homepage">Go to homepage</button>
+        <span class="muted" style="margin-left:8px">404 · Category not found</span>
+      </div>
+
+      <p style="margin-top:18px;color:var(--muted);font-size:13px">Tip: try a different category name or check spelling. If you think this is an error, contact support.</p>
+    </div>
+
+    <div>
+      <div class="scene" aria-hidden="true">
+        <div class="detective">
+          <div class="hat"></div>
+          <div class="body"></div>
+          <div class="eye"></div>
+          <div class="eye r"></div>
+          <div class="magnifier"></div>
+        </div>
+
+        <div class="sparkle spark-1"></div>
+        <div class="sparkle spark-2"></div>
+        <div class="sparkle spark-3"></div>
+
+        <div style="position:absolute;left:18px;top:28px;text-align:left;max-width:48%;">
+          <div class="headline" id="headline">
+            <span class="frag">C</span>
+            <span class="frag">a</span>
+            <span class="frag">t</span>
+            <span class="frag">e</span>
+            <span class="frag">g</span>
+            <span class="frag">o</span>
+            <span class="frag">r</span>
+            <span class="frag">y</span>
+            <span class="frag">&nbsp;</span>
+            <span class="frag">d</span>
+            <span class="frag">o</span>
+            <span class="frag">e</span>
+            <span class="frag">s</span>
+            <span class="frag">&nbsp;</span>
+            <span class="frag">n</span>
+            <span class="frag">o</span>
+            <span class="frag">t</span>
+            <span class="frag">&nbsp;</span>
+            <span class="frag">e</span>
+            <span class="frag">x</span>
+            <span class="frag">i</span>
+            <span class="frag">s</span>
+            <span class="frag">t</span>
+          </div>
+          <div class="muted" style="margin-top:6px">Hover the illustration for a fun crumble animation ✨</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goHome(){
+      // try to go to root; in Django you might want to use a URL tag.
+      window.location.href = '/';
+    }
+    function openSearch(){
+      // naive search prompt — replace with your site's search page.
+      const q = prompt('Search categories — try a keyword');
+      if(q && q.trim()){
+        // Example navigation — change to your real search route
+        const url = '/search?q=' + encodeURIComponent(q.trim());
+        window.location.href = url;
+      }
+    }
+
+    // playful tiny animation: letters jiggle when magnifier passes (approx)
+    (function(){
+      const mag = document.querySelector('.magnifier');
+      const frags = Array.from(document.querySelectorAll('.frag'));
+      let t = 0;
+      function tick(){
+        t += 1/60;
+        const x = Math.sin(t*0.9)*36; // back-and-forth
+        const y = Math.cos(t*0.6)*12;
+        mag.style.transform = `translate(${x}px, ${y}px) rotate(18deg)`;
+
+        // gently nudge a letter near the magnifier
+        const idx = Math.floor((Math.abs(Math.sin(t*0.6))*frags.length));
+        frags.forEach((f,i)=>{
+          f.style.transform = i===idx? 'translateY(-6px) rotate(-6deg) scale(1.06)' : '';
+          f.style.opacity = i===idx? '0.98' : '';
+        });
+
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>

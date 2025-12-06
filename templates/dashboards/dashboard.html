@@ -1,0 +1,51 @@
+{% extends "base/base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+       <div class="col-md-3">
+            <div class="d-flex flex-column" aria-orientation="vertical">
+                <a href="{% url 'dashboard' %}" class="nav-link text-body mb-2 {% if '/dashboard/' == request.path %}bg-secondary{% endif %}">Dashboard</a>
+                {% if perms.auth.view_user %}
+                <a href="{% url 'users' %}" class="nav-link text-body mb-2 {% if '/users/' in request.path %}bg-secondary{% endif %}">Users</a>
+                {% endif %}
+                {% if perms.BlogApp.view_category %}
+                <a href="{% url 'categories' %}" class="nav-link text-body  mb-2 {% if '/categories/' in request.path %}bg-secondary{% endif %}">Categories</a>
+                {% endif %}
+                {% if perms.BlogApp.view_blogpost %}
+                <a href="{% url 'posts' %}" class="nav-link text-body mb-2 {% if '/posts/' in request.path %}bg-secondary{% endif %}">Blog Posts</a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="nav-link text-body">Logout</a>
+            </div>
+       </div>
+    
+
+       <div class="col-md-9">
+            <div class="row">
+                <div class="col">
+                    <div class="card border-default mb-3">
+                        <div class="card-header text-center font-weight-bold">
+                            <h3 class="text-body">All Categories</h3>
+                        </div>
+                        <div class="card-body text-body">
+                            <h5 class="card-title text-center">{{ category_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-default mb-3">
+                        <div class="card-header text-center font-weight-bold">
+                            <h3 class="text-body">All Posts</h3>
+                        </div>
+                        <div class="card-body text-body">
+                            <h5 class="card-title text-center">{{ blogs_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div>
+    </div>
+</div>
+{% endblock %}

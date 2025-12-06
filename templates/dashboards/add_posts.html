@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+       <div class="col-md-3">
+            <div class="d-flex flex-column" aria-orientation="vertical" >
+                <a href="{% url 'dashboard' %}" class="nav-link text-body mb-2 {% if '/dashboard/' == request.path %}bg-secondary{% endif %}">Dashboard</a>
+                {% if perms.auth.view_user %}
+                <a href="{% url 'users' %}" class="nav-link text-body mb-2 {% if '/users/' in request.path %}bg-secondary{% endif %}">Users</a>
+                {% endif %}
+                {% if perms.BlogApp.view_category %}
+                <a href="{% url 'categories' %}" class="nav-link text-body  mb-2 {% if '/categories/' in request.path %}bg-secondary{% endif %}">Categories</a>
+                {% endif %}
+                {% if perms.BlogApp.view_blogpost %}
+                <a href="{% url 'posts' %}" class="nav-link text-body mb-2 {% if '/posts/' in request.path %}bg-secondary{% endif %}">Blog Posts</a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="nav-link text-body">Logout</a>
+            </div>
+       </div>
+
+    {% load crispy_forms_tags %}
+
+       <div class="col-md-9">
+            <h3 class="my-4">Create Post</h3>
+            <form method="post" action="" style="width: 500px"; enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <style>
+                    .form-group { margin-bottom: 1rem; }
+                </style>
+                <br>
+                <button type="submit" class="btn btn-secondary">Add Post</button>
+                <br>
+                <br>
+            </form>
+        <div>
+    </div>
+</div>
+{% endblock%}
