@@ -14,7 +14,7 @@
                 {% if perms.BlogApp.view_category %}
                 <a href="{% url 'categories' %}" class="nav-link text-body  mb-2 {% if '/categories/' in request.path %}bg-secondary{% endif %}">Categories</a>
                 {% endif %}
-                {% if perms.BlogApp.view_blogpost %}
+                {% if perms.BlogApp.view_blogs %}
                 <a href="{% url 'posts' %}" class="nav-link text-body mb-2 {% if '/posts/' in request.path %}bg-secondary{% endif %}">Blog Posts</a>
                 {% endif %}
                 <a href="{% url 'logout' %}" class="nav-link text-body">Logout</a>
