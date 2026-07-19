@@ -1,0 +1,21 @@
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Local database
+db.sqlite3
+
+# Django collected static
+staticfiles/
+
+# Django backup
+datadump.json
+
+# Python
+__pycache__/
+*.py[cod]
