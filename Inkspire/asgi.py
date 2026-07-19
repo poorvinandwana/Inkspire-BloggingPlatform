@@ -1,5 +1,5 @@
 """
-ASGI config for blog_main project.
+ASGI config for Inkspire project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

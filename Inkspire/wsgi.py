@@ -1,5 +1,5 @@
 """
-WSGI config for blog_main project.
+WSGI config for Inkspire project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
